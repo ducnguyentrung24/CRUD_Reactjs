@@ -7,6 +7,8 @@ import {
 } from "../api/customerApi";
 import CustomerForm from "../components/CustomerForm";
 import "../App.css";
+import { toast } from "react-toastify";
+
 
 function CustomerPage() {
     const [customers, setCustomers] = useState([]);
@@ -39,6 +41,7 @@ function CustomerPage() {
             await createCustomer(data);
             setServerError(null);
             setResetKey((k) => k + 1); // Reset form
+            toast.success("Thêm customer thành công!");
             fetchCustomers();
         } catch (err) {
             if (err.response?.status === 409) {
@@ -54,6 +57,7 @@ function CustomerPage() {
             setEditingCustomer(null);
             setServerError(null);
             setResetKey((k) => k + 1); // Reset form
+            toast.success("Cập nhật customer thành công!");
             fetchCustomers();
         } catch (err) {
             if (err.response?.status === 409) {
@@ -66,6 +70,8 @@ function CustomerPage() {
     const openDeleteModal = (customer) => {
         setSelectedCustomer(customer);
         setShowModal(true);
+        toast.success("Xóa customer thành công!");
+        fetchCustomers();
     };
 
     const confirmDelete = async () => {

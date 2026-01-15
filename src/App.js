@@ -1,10 +1,13 @@
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import CustomerPage from "./pages/CustomerPage";
 
 function App() {
   return (
-    <div>
+    <>
       <CustomerPage />
-    </div>
+      <ToastContainer position="bottom-right" autoClose={2500} />
+    </>
   );
 }
 
