@@ -66,6 +66,11 @@ function CustomerPage() {
         }
     };
 
+    const handleCancelEdit = () => {
+        setEditingCustomer(null);
+        setServerError(null);
+        setResetKey((k) => k + 1); // Reset form
+    };
 
     const openDeleteModal = (customer) => {
         setSelectedCustomer(customer);
@@ -119,7 +124,7 @@ function CustomerPage() {
                 key={resetKey}
                 onSubmit={editingCustomer ? handleUpdate : handleCreate}
                 editingCustomer={editingCustomer}
-                onCancel={() => setEditingCustomer(null)}
+                onCancel={() => handleCancelEdit()}
                 serverError={serverError}
             />
             <div className="table-wrapper">
